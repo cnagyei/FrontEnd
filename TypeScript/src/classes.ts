@@ -108,6 +108,33 @@ interface Pingable {
     ping(): void;
 }
 
-class Sonar implements Pingable {
-    ping(): void {}
+interface DNS {
+    imcp(): void
 }
+
+class Sonar implements Pingable, DNS {
+    ping(): void {}
+    imcp(): void {}
+}
+
+class Ball implements Pingable, DNS {
+    pong(): void {}
+    imcp(): void {}
+    ping() {
+    }
+}
+
+// implementing an interface with an optional property doesn’t create that property
+interface A {
+    a: number;
+    b?: number;
+}
+
+class K implements A {
+    a = 0;
+}
+
+const c = new K();
+console.log(c.a);
+// console.log(c.b); // Error
+
