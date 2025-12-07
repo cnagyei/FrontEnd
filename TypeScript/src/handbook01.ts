@@ -129,8 +129,8 @@ type Man = Human & {
 // kofi.gender;
 
 // Type Assertions
-const myCanvas = document.getElementById("myCanvas") as HTMLCanvasElement;
-const myCanvas2 = <HTMLCanvasElement>document.getElementById("myCanvas2");
+// const myCanvas = document.getElementById("myCanvas") as HTMLCanvasElement;
+// const myCanvas2 = <HTMLCanvasElement>document.getElementById("myCanvas2");
 
 let changingString = "Hello World";
 const constantString = "Hello World";
@@ -140,3 +140,39 @@ let sayHello: "hello" = "hello"; // Even though let is used, the type "hello" ma
 console.log(sayHello);
 
 // sayHello = "hsos"; // not possible
+
+function printText(text: string, alignment: "left" | "right" | "center") {
+    console.log(text, alignment);
+}
+
+printText("My name is Kofi", "center");
+
+function compare(a: string, b: string): -1 | 0 | 1 {
+    return a === b ? 0 : a > b ? 1 : -1;
+}
+
+console.log(compare("Jo", "John"));
+
+declare function handleRequest(url: string, method: "GET" | "POST"): void;
+
+const req = {url: "https://stepstochrist.com.gh", method: "GET"};
+handleRequest(req.url, "GET");
+handleRequest(req.url, req.method as "GET");
+
+// Non-null assertion
+function liveDangerously(x?: number | null) {
+    console.log(x!.toFixed()); // uses postfix ! to make variable non-null
+}
+
+// bigint
+const oneHundred: bigint = BigInt(100); // via BigInt function
+
+const anotherHundred: bigint = 100n; // via literal syntax - uses postfix 'n'
+
+// Symbol - used to create a globally unique reference
+const firstName = Symbol("name");
+const secondName = Symbol("name");
+
+// if (firstName === secondName) {
+//     // Can't ever happen
+// }
